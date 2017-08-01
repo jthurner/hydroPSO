@@ -193,7 +193,7 @@ read_out <- function(file="Model_out.txt",
       } else {
         obs <- read.table(fname, header=FALSE, skip=0)  
         # skippping the column with the index
-        obs <- obs[,1]
+        obs <- obs[,ncol(obs)]
       } # ELSE end 
       
       # If the user only wants some columns of the model output file
