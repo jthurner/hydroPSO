@@ -1838,9 +1838,9 @@ hydroPSO <- function(
     if (drty.out == basename(drty.out) )
       drty.out <- paste( getwd(), "/", drty.out, sep="")
 
-    if (!file.exists(file.path(drty.out))) {
-      if (write2disk) {
-	dir.create(file.path(drty.out))
+    if (!dir.exists(drty.out)) {
+    	if (write2disk) {
+    		dir.create(drty.out,recursive = TRUE)
 	if (verbose) message("                                            ")
 	if (verbose) message("[ Output directory '", basename(drty.out), "' was created on: '", dirname(drty.out), "' ]") 
 	if (verbose) message("                                            ")
