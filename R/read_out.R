@@ -37,7 +37,8 @@
 read_out <- function(file="Model_out.txt", 
                      modelout.cols=NULL, 
                      nsim=NULL,
-                     obs, 
+                     best.sim=NULL,
+                     obs=NULL, 
                      MinMax=NULL, 
                      beh.thr=NA, 
                      verbose=TRUE,
@@ -159,7 +160,9 @@ read_out <- function(file="Model_out.txt",
   } # IF end
   
   # Selecting best model output
-  if ( !is.null(MinMax) ) {
+  if (!is.null(best.sim)) {
+    best <- best.sim
+  } else if ( !is.null(MinMax)) {
     ifelse(MinMax=="min", best.row.index <- which.min(gofs), 
                           best.row.index <- which.max(gofs) )
     if ( is.matrix(outputs) | is.data.frame(outputs) ) {
@@ -179,7 +182,7 @@ read_out <- function(file="Model_out.txt",
   # 3)                        Getting Observed Values                          #
   ##############################################################################
 
-  if (missing(obs)) {
+  if (is.null(obs)) {
     fname <- "Observations.txt"
     if (file.exists(fname)) {
       if ( !is.na( match("zoo", installed.packages()[,"Package"] ) ) ) {
@@ -204,8 +207,9 @@ read_out <- function(file="Model_out.txt",
 
   # Checking length(obs)
   if ( !is.null(obs) & is.numeric(obs) ) {
-    if ( length(obs) != lnsim ) 
-      stop("Invalid argument: 'length(obs) != ncol(sims)' ", length(obs), "!=", lnsim, " !!")
+    if ( NROW(obs) != NROW(best) ) 
+      stop("obs and best simulation have different lengths: ", NROW(obs), 
+           "!=", NROW(best), " !!")
   } # IF end
   
   ##############################################################################

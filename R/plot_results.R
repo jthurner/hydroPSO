@@ -97,11 +97,12 @@ plot_results <- function(drty.out="PSO.out",
                          modelout.quant.png.fname="ModelOut_Quantiles.png",
                          conv.png.fname ="ConvergenceMeasures.png",
                          
+                         sim = NULL,
+                         obs = NULL,
                          verbose=TRUE
                          ) {
    
    ######################## I) Reading #########################################
-   
    # Full path to 'drty.out'
    if (basename(drty.out) == drty.out) 
      drty.out <- paste(getwd(), "/", drty.out, sep="")
@@ -150,7 +151,7 @@ plot_results <- function(drty.out="PSO.out",
    #############################################################################
    # 1.1) Reading all the results of hydroPSO
    res <- read_results(drty.out=drty.out, MinMax=MinMax, beh.thr=beh.thr, 
-                       modelout.cols=modelout.cols, verbose=verbose)
+                       modelout.cols=modelout.cols, sim=sim, obs = obs, verbose=verbose)
    #############################################################################
    
    # 1.2) Assignments
@@ -320,7 +321,7 @@ plot_results <- function(drty.out="PSO.out",
      if ( is.zoo(model.obs) ) { # zoo::is.zoo
        if ( TRUE && (class(time(model.obs)) %in% c("Date", "POSIXct", "POSIXt")) ) obs.is.zoo <- TRUE
      } # IF end
-     
+
      # 2.4.1) Correlation between Best Sim and Obs
      if ( obs.is.zoo ) {         
        fname2 <- paste(fname, "-Corr.png", sep="")

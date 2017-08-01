@@ -49,6 +49,8 @@ read_results <- function(drty.out="PSO.out",
                          beh.thr=NA, 
                          modelout.cols=NULL, # 'read_out' , 'plot_out' argument
                          nsim=NULL,          # 'read_out' argument
+                         sim = NULL,
+                         obs = NULL,
                          verbose=TRUE) {
 
    ########################       Checkings      ###############################
@@ -98,7 +100,7 @@ read_results <- function(drty.out="PSO.out",
    
    # 4) File "Model_out.txt"        
    out <- read_out(modelout.cols=modelout.cols, MinMax=MinMax, 
-                   beh.thr=beh.thr, verbose=verbose, plot=FALSE)     
+                   beh.thr=beh.thr, best.sim=sim, obs=obs, verbose=verbose, plot=FALSE)     
    model.values <- out[["model.values"]]
    model.best   <- out[["model.best"]]    
    model.obs    <- out[["model.obs"]]
