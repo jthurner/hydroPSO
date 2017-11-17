@@ -52,12 +52,12 @@ quant2ecdf.default <- function(sim,
                        ...
                        ) {
                        
-    if (is.na(match(class(sim), c("matrix", "data.frame") ) ) )
+    if (is.na(match(class(sim), c("matrix", "data.frame") ) ) ) {
       message("[ Invalid argument: 'class(sim)' must be in c('matrix', 'data.frame') ]")
       message("[ Skipping caluclation/plotting of quant2ecdf ]")
       return(NULL)
           # stop("Invalid argument: 'class(sim)' must be in c('matrix', 'data.frame')") 
-    
+    }
     # Unweighted quantiles (usually, Q5, Q50, Q95).
     # Due to the fact that 'weights' is missing, and its default value 
     # is NULL, the computation returns un-weighted quantiles 
