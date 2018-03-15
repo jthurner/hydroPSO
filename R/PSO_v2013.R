@@ -3157,11 +3157,11 @@ hydroPSO <- function(
 
 	hydroPSOparam.TextFile <- file(hydroPSOparam.fname, "a")    
 	
-	writeLines("================================================================================", PSOparam.TextFile) 
-        writeLines(c("Total model calls      :", nfn-1), PSOparam.TextFile, sep="  ")
-        writeLines("", PSOparam.TextFile) 
-        writeLines(c("Effective model calls  :", nfn.eff-1), PSOparam.TextFile, sep="  ")
-        writeLines("", PSOparam.TextFile) 
+	writeLines("================================================================================", hydroPSOparam.TextFile) 
+        writeLines(c("Total model calls      :", nfn-1), hydroPSOparam.TextFile, sep="  ")
+        writeLines("", hydroPSOparam.TextFile) 
+        writeLines(c("Effective model calls  :", nfn.eff-1), hydroPSOparam.TextFile, sep="  ")
+        writeLines("", hydroPSOparam.TextFile) 
         writeLines("================================================================================", hydroPSOparam.TextFile) 
 	writeLines(c("Ending Time            :", date()), hydroPSOparam.TextFile, sep=" ")
 	writeLines("", hydroPSOparam.TextFile) 
